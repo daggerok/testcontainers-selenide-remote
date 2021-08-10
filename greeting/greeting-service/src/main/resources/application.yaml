@@ -1,0 +1,15 @@
+management.endpoints.web.exposure.include: health
+spring:
+  application:
+    name: greeting-service
+  output:
+    ansi:
+      enabled: always
+logging:
+  level:
+    feign: debug
+greetings:
+  host: ${GREETINGS_HOST:greetings}
+  port: ${GREETINGS_PORT:80}
+server:
+  port: 8081

@@ -1,0 +1,65 @@
+name: CI
+on:
+  push:
+  #pull_request:
+  workflow_dispatch:
+    inputs:
+      trigger:
+        description: Type m to triggre manual jobs
+        required: false
+        default: ''
+env:
+  NODE_VERSION: 14
+  JAVA_VERSION: 1.8
+jobs:
+  tests:
+    name: tests
+    if: github.event.inputs.trigger == ''
+      || !startsWith(github.event.inputs.trigger, 'm')
+      || !startsWith(github.event.inputs.trigger, 'M')
+    #if: startsWith(github.event.inputs.trigger, 'm')
+    #  || startsWith(github.event.inputs.trigger, 'M')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      id: global-cache
+      with:
+        path: |
+          ~/.m2
+          !~/.m2/repository/example*
+        key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+    - uses: actions/setup-java@v1
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+    - run: sudo rm -rf ~/.m2/repository/example*
+    - run: ./mvnw clean package
+  docs:
+    name: github pages
+    if: github.event.inputs.trigger == ''
+      || !startsWith(github.event.inputs.trigger, 'm')
+      || !startsWith(github.event.inputs.trigger, 'M')
+    #if: startsWith(github.event.inputs.trigger, 'm')
+    #  || startsWith(github.event.inputs.trigger, 'M')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      id: global-cache
+      with:
+        path: |
+          ~/.n*
+          ~/.npm
+        key: ${{ runner.os }}-${{ hashFiles('**/package.json', '**/package-lock.json') }}
+    - uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - run: npm i                      -C docs
+    - run: npm run build-github-pages -C docs
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.0
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: docs/.vuepress/dist # The folder the action should deploy.

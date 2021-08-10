@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <version>0.0.0</version>
+        <groupId>example</groupId>
+        <artifactId>spring-boot-kotlin-testcontainers-selenide-remote-web-driver</artifactId>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>example.greeting.api</groupId>
+    <artifactId>greeting-api</artifactId>
+    <name>${project.parent.artifactId}:${project.artifactId}</name>
+    <description>Order API module</description>
+    <dependencies>
+        <dependency>
+            <groupId>example.infrastructure</groupId>
+            <artifactId>testing-support</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

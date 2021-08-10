@@ -1,0 +1,13 @@
+management.endpoints.web.exposure.include: health
+#logging.level.org.springframework.web=DEBUG
+spring:
+  application:
+    name: webapp
+  output:
+    ansi:
+      enabled: always
+server:
+  port: 8080
+greetings:
+  host: ${GREETINGS_SERVICE_HOST:greeting-service}
+  port: ${GREETINGS_SERVICE_PORT:8081}

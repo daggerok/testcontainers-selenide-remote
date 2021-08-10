@@ -1,0 +1,10 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+greetings:
+  host: 127.0.0.1
+  port: 8765
+logging:
+  level:
+    feign: debug

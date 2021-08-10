@@ -1,0 +1,38 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "Spring Boot, Kotlin, TestContainers, Selenide with remote web driver testing",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "vuepress dev .",
+    "build": "vuepress build .",
+    "build-github-pages": "cross-env BASE=/testcontainers-selenide-remote/ npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vuepress",
+    "markdown-it-vuepress-code-snippet-enhanced",
+    "vuepress-theme-default-prefers-color-scheme"
+  ],
+  "repository": {
+    "url": "https://github.com/daggerok/testcontainers-selenide-remote",
+    "directory": "docs",
+    "docsBranch": "main"
+  },
+  "authors": {
+    "name": "Maksim Kostromin",
+    "url": "https://github.com/daggerok"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "16.4.13",
+    "@vuepress/plugin-back-to-top": "1.8.2",
+    "@vuepress/plugin-medium-zoom": "1.8.2",
+    "cross-env": "7.0.3",
+    "markdown-it-vuepress-code-snippet-enhanced": "1.0.1",
+    "rimraf": "3.0.2",
+    "vuepress": "1.8.2",
+    "vuepress-theme-default-prefers-color-scheme": "2.0.0"
+  }
+}

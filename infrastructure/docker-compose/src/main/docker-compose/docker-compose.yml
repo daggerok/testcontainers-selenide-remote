@@ -1,0 +1,30 @@
+version: '2.1'
+networks:
+  localnet:
+services:
+  greeting-service:
+    image: daggerok/spring-boot-kotlin-testcontainers-selenide-remote-web-driver-greeting-service
+    networks: [ localnet ]
+    ulimits:
+      memlock:
+        hard: 2048
+        soft: 1024
+  webapp:
+    image: daggerok/spring-boot-kotlin-testcontainers-selenide-remote-web-driver-webapp
+    networks: [ localnet ]
+    ulimits:
+      memlock:
+        hard: 2048
+        soft: 1024
+    depends_on:
+      greeting-service:
+        condition: service_healthy
+  nginx-reverse-proxy: # required by docker-compose-maven-plugin
+    image: daggerok/spring-boot-kotlin-testcontainers-selenide-remote-web-driver-nginx-reverse-proxy
+    ports: [ '80:80' ]
+    networks: [ localnet ]
+    depends_on:
+      greeting-service:
+        condition: service_healthy
+      webapp:
+        condition: service_healthy

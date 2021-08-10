@@ -1,0 +1,47 @@
+= Greetings REST API
+
+== Overview
+
+This document contains description for all supported Greetings REST API operations.
+
+.Big picture diagram
+[ditaa]
+----
+
+User
+  __O__   HTTP Request /------------------\
+    |   <------=------>| greeting service |
+   / \   HTTP Response \------------------/
+
+----
+
+== Operations
+
+=== Greet
+
+.`GreetRequest`:
+[source,http request]
+include::{snippets}/greet/http-request.adoc[]
+
+.created `GreetDTO` response:
+[source,json]
+include::{snippets}/greet/response-body.adoc[]
+
+== RTFM
+
+- https://intellij-asciidoc-plugin.ahus1.de/docs/users-guide/features/advanced/spring-rest-docs.html[Spring REST Docs]
+- https://github.com/stathissideris/ditaa[ditaa reference]
+- http://wiremock.org/docs/[WireMock reference]
+
+---
+
+Technical information:
+
+[subs="attributes"]
+----
+Group ID: {project-group-id}
+Artifact ID: {project-artifact-id}
+Version: {project-version}
+Asciidoctor version: {asciidoctor-version}
+Tools: spring-restdocs-restassured, asciidoctor-maven-plugin
+----

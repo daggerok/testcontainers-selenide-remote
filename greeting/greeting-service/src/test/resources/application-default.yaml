@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:hsqldb:file:./target/hsqldb/test-${spring.application.name}-${random.value};ifexists=false
+  jpa:
+    show-sql: on
+greetings:
+  host: 127.0.0.1
+  port: 8081

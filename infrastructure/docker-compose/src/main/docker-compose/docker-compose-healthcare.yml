@@ -1,0 +1,31 @@
+version: '2.1'
+networks:
+  localnet:
+services:
+  greeting-service:
+    image: daggerok/spring-boot-kotlin-testcontainers-selenide-remote-web-driver-greeting-service
+    ports: [ '8081:8081' ]
+    networks: [ localnet ]
+    ulimits:
+      memlock:
+        hard: 2048
+        soft: 1024
+  webapp:
+    image: daggerok/spring-boot-kotlin-testcontainers-selenide-remote-web-driver-webapp
+    ports: [ '8080:8080' ]
+    networks: [ localnet ]
+    ulimits:
+      memlock:
+        hard: 2048
+        soft: 1024
+    depends_on:
+      greeting-service:
+        condition: service_healthy
+  healthcare: # required by docker-compose-maven-plugin
+    image: busybox
+    networks: [ localnet ]
+    depends_on:
+      greeting-service:
+        condition: service_healthy
+      webapp:
+        condition: service_healthy

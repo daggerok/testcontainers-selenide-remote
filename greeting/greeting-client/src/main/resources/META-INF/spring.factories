@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  example.greeting.client.autoconfigure.GreetingFeignClientAutoConfiguration
